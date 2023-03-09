@@ -1,0 +1,26 @@
+BIN = boot.bin
+COM = kernel.com
+#COM = pmtest7.com
+IMG = protected_mode.img
+
+.PHONY: clean clear all
+
+all: $(IMG) clear
+
+$(IMG): $(BIN) $(COM)
+	rm -f *.img
+	mkfs.msdos -C $@ 1440
+	dd if=boot.bin of=$@ conv=notrunc
+	dd if=kernel.com of=$@ seek=1 conv=notrunc
+
+%.bin: %.asm
+	nasm -fbin -o $@ $<
+
+%.com: %.asm
+	nasm -fbin -o $@ $<
+
+clear:
+	rm -f $(BIN) $(COM)
+
+clean:
+	rm -f $(BIN) $(COM) $(IMG)

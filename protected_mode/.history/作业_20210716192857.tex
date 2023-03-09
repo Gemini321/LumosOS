@@ -1,0 +1,233 @@
+%% pwx321556's report latex template
+%
+%% report.tex
+%
+%% Copyright 2021 pwx321556
+
+%*******************************************************************
+%*
+%*                           页面排版
+%*
+%*******************************************************************
+
+\documentclass[12pt,a4paper,UTF8]{ctexart}
+\usepackage{graphicx}                       %graphicx：插入图片
+\usepackage{float}                          %float：图片浮动
+\usepackage{subfigure}                      %subfigure：并排排版图片、竖向排版图片
+\usepackage{caption}                        %caption：图像设置
+\usepackage{booktabs}                       %booktabs：三线图，论文常用的表格风格
+\usepackage{hyperref}                       %hyperref:超链接,和lastpage搭配
+\usepackage{lastpage}                       %lastpage:获取总页数
+\usepackage{setspace}                       %setspace：设置行间距等功能
+\usepackage{geometry}                       %geometry：用于设置上下左右页边距
+\usepackage{bibspacing}                     %bibspacing：自定义包，用于bib格式调整
+\geometry{left=2.5cm,right=2.5cm,top=3.2cm,bottom=2.8cm}
+
+% 页眉设置
+\usepackage{fancyhdr}
+	%fancyhdr：一个很强大的宏包，用于自定义设计页面风格并命名以供调用。
+	\pagestyle{fancy}
+	\rhead{实验十二 \;\; 保护模式操作系统}
+	\lhead{操作系统原理 \ 实验报告}
+	\cfoot{\thepage/\pageref{LastPage}}  %当前页\总页数
+	%\rfoot{\today}                      %右下角显示日期
+	%分别是右页眉、左页眉、中页脚、右页脚
+    \renewcommand{\headrulewidth}{0.4pt} %页眉线
+    %\renewcommand{\footrulewidth}{0.4pt}%页脚线
+	%\renewcommand{\theenumi}{(\arabic{enumi})}%标号设置为(1)
+
+%解决目录红框问题
+\hypersetup{
+    colorlinks=true,        %彩色显示超链接（否则出现框）
+    linkcolor=black,        %文本链接颜色，默认为blue
+    urlcolor=blue,          %URL颜色，默认为magenta
+    %allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true
+}
+
+\title{\kaishu \LARGE 中山大学数据科学与计算机学院本科生实验报告\\
+（2021学年春季学期）}
+\date{}
+\author{}
+
+%------------------------------end----------------------------------
+
+
+%*******************************************************************
+%*
+%*                           格式设置
+%*
+%*******************************************************************
+
+\usepackage{color}
+\usepackage[table,xcdraw]{xcolor}           %xcolor：提供表格等颜色
+\usepackage{enumerate}                      %paralist，enumerate：自定义项目符号
+\usepackage{paralist}
+\usepackage{listings}                       %listings:用于排版各种代码；比如matlab的代码
+\usepackage{array}                          %array：表格格式
+\usepackage{multirow}                       %multirow, multicol：复杂表格
+\usepackage{multicol}
+\usepackage{bookmark}                       %bookmark：在PDF中生成索引标签
+
+\definecolor{darkgreen}{RGB}{0, 100, 0}
+%设置lstset环境（中间不可空行）
+\lstset{
+    aboveskip=3mm,                          %aboveskip：上边距
+    belowskip=3mm,                          %belowskip：下边距
+    xleftmargin=2em,                        %xleftmargin：左边距
+    xrightmargin=2em,                       %xrightmargin：右边距
+    frame=shadowbox,                        %frame：边框(tb:table, shadowbox:box)
+    framerule=1pt,                          %framerule：边框线
+    rulecolor=\color{gray!35},              %rulecolor：边框颜色
+    backgroundcolor=\color{gray!5},         %backgroundcolor：背景颜色
+    columns=flexible,                       %columns：字母间的空隙大小
+    numbers=none,                           %numbers：代码行号(none/left/right)
+    numberstyle=\tiny\color{gray},          %numberstyle：数字格式
+    stepnumber=1,                           %stepnumber：每隔多少行记录一次行号
+    basicstyle={\small\ttfamily},           %basicstyle：代码字体格式(\small, \footnotesize, \tt(等宽), \it(斜体), \bf等)
+    keywordstyle=\color{blue},              %keywordstyle：代码关键词格式
+    commentstyle=\color{darkgreen},         %commentstyle：注释格式
+    stringstyle=\color{orange},             %stringstyle：字符串格式(mauve:淡紫色)
+    showspaces=false,                       %showspaces：特别显示空格（加下划线）
+    showstringspaces=false,                 %showstringspaces：显示字符串内空格（加下划线）
+    breaklines=true,                        %breaklines：自动换行
+    breakatwhitespace=false,                %breakatwhitespace：自动换行只在白空格生效
+    tabsize=3,                              %tabsize：缩进大小
+    morekeywords={}                         %morekeywords：自主设置关键词
+}
+
+%列表、枚举类型格式
+\setlength{\leftmargin}{1.2em}              %左边界
+\setlength{\parsep}{0ex}                    %段落间距
+\setlength{\topsep}{1ex}                    %列表到上下文的垂直距离
+\setlength{\itemsep}{0.3ex}                 %条目间距
+\setlength{\labelsep}{0.3em}                %标号和列表项之间的距离,默认0.5em
+\setlength{\itemindent}{1.1em}              %标签缩进量
+\setlength{\listparindent}{0em}             %段落缩进量
+
+\setlength{\pltopsep}{5pt}                  %修改表项行距
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+
+%文献引用格式
+\renewcommand\refname{参考资料}
+\setlength{\bibspacing}{\baselineskip}      %参考资料行距为基础行距
+
+%------------------------------end----------------------------------
+
+
+%*******************************************************************
+%*
+%*                           字体设置
+%*
+%*******************************************************************
+
+\usepackage{xeCJK}                          %xeCJK：中文字体（如楷体，作者和机构需要用到）的设置
+\usepackage{amsmath}                        %amsmath：数学公式
+\usepackage{amsfonts}                       %amsfonts：数学字体
+\usepackage{amssymb}                        %amssymb：数学符号
+\usepackage{fontspec}
+\usepackage{fontsetup}
+
+%中文字体设置：使用开源字体方正书宋，方正楷体和方正黑体
+\setCJKmainfont[ItalicFont=FZKai-Z03S, BoldFont=FZHei-B01S]{FZShuSong-Z01S}
+\renewcommand{\songti}{\CJKfontspec{Source Han Serif SC}}%用命令\songti调用思源宋体
+\newcommand{\fzkaiti}{\CJKfontspec{方正楷体简体}}%用命令\fzkaiti调用方正楷体简体
+
+\setlength{\parindent}{2em}                         %正文首行缩进两个汉字
+\ctexset{section={format={\centering\bfseries\Large}}}
+\ctexset{subsection={format={\bfseries\raggedright\large}}}
+\ctexset{subsubsection={format=\bfseries\raggedright\normalsize}}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\renewcommand{\contentsname}{\textbf{目录}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}} % P{4cm} = \centering p{4cm}
+
+
+%------------------------------end----------------------------------
+
+
+\begin{document}
+
+% 封面设置
+\begin{titlepage}
+    \vspace*{-3cm}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figs/sysu_logo.jpg}
+\end{figure}
+\begin{center}
+    \Huge{\textbf{操作系统原理}}\\
+    \Huge{\textbf{实验报告}}
+\end{center}
+
+\vspace*{3.5cm}
+\begin{center}
+        \large 
+        实验名称\ \ \underline{\makebox[220pt]{实验十二\; 保护模式操作系统}} \\ 
+        \vspace{0.3cm}
+        \ \ \ 姓\; 名 \ \ \ \underline{\makebox[220pt]{潘文轩}} \\ 
+        \vspace{0.3cm}
+        \ \ \ 学\; 号 \ \ \ \underline{\makebox[220pt]{19335163}}\\
+        \vspace{0.3cm}
+        任教老师\ \ \underline{\makebox[220pt]{凌应标}}\\
+        \vspace{0.3cm}
+        \ \ \ 助\; 教 \ \ \ \underline{\makebox[220pt]{梁丰洲、车鑫恺}}\\
+        \vspace{0.3cm}
+        完成日期\ \ \underline{\makebox[220pt]{2021年 7 月 16 日}}\\
+\end{center}
+\end{titlepage}
+\newpage
+
+\section*{实验十二 \quad 保护模式操作系统}
+
+\subsection*{一、实验目的}
+
+\noindent 实验目的如下：
+
+\renewcommand{\labelenumi}{(\theenumi)}
+\begin{enumerate}
+\item 学习保护模式操作系统的特点
+\item 熟悉保护模式操作系统的实现方式
+\item 对比实模式操作系统，理解保护模式的优点
+\end{enumerate}
+
+\noindent 实验内容如下：
+
+\begin{enumerate}
+\item 实现实模式到保护模式的跳转
+\item 构造GDT、LDT，实现操作系统的分段内存管理
+\item 通过调用门和远返回实现段间跳转和特权级转换
+\item 构造根页表与用户页表实现操作系统的分页内存管理
+\item 实现中断与陷阱
+\item 在已有的操作系统基础上引入FAT12文件系统组织方式
+\item 利用Makefile文件汇编源代码、生产软盘映像文件
+\end{enumerate}
+
+\noindent 实验环境：Windows10/CentOS7 + DOSBOX + VirtualBox
+
+\noindent 编译工具：TCC + TASM + TLink
+
+\subsection*{二、实验原理}
+
+\subsubsection*{文件系统}
+
+
+
+\begin{thebibliography}{1}
+\bibitem{ref:filesystems} \href{https://blog.csdn.net/enweitech/article/details/82413831}
+{https://blog.csdn.net/enweitech/article/details/82413831}
+文件系统的分类
+\bibitem{ref:fat_12} \href{https://zhuanlan.zhihu.com/p/121807427}
+{https://zhuanlan.zhihu.com/p/121807427}
+FAT12文件系统介绍
+\bibitem{ref:mount} \href{https://www.runoob.com/linux/linux-comm-mount.html}
+{https://www.runoob.com/linux/linux-comm-mount.html}
+Linux mount命令详解
+\end{thebibliography}
+
+\end{document}
